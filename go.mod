@@ -1,3 +1,3 @@
-module github.com/gofaquan/Leetcode-Demo-gen
+module github.com/gofaquan/leetcode-demo-gen
 
 go 1.19
