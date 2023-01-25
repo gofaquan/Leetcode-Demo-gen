@@ -1,4 +1,4 @@
-package main
+package parser
 
 import (
 	"strconv"
@@ -67,7 +67,8 @@ func (p *parser) buildList() *ListNode {
 // buildBinaryTree 把 data 转换成 二叉树
 // 就是把层序遍历的结果转换成二叉树
 func (p *parser) buildBinaryTree() *TreeNode {
-	if len(p.data) == 0 {
+	// 代表 "" 空字符串
+	if len(p.data) == 1 || p.data[0] == "" {
 		return nil
 	}
 	root := p.AtoTreeNode(0)
