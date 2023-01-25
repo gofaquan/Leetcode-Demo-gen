@@ -2,7 +2,17 @@
 
 编写 leetcode 代码生成工具来辅助使用 go 来刷题
 
-Todo：
+```shell
+go get github.com/gofaquan/leetcode-demo-gen
+```
+或者 import 后, go mod tidy
+```go
+import (
+	"github.com/gofaquan/leetcode-demo-gen"
+)
+```
+
+### Todo：
 
 - [ ] 无错误校验机制，传入的 string 必须是正确的
 
@@ -15,7 +25,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gofaquan/Leetcode-Demo-gen"
+	"github.com/gofaquan/leetcode-demo-gen"
 )
 
 type ListNode struct {
