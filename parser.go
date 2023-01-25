@@ -1,6 +1,8 @@
 package parser
 
 import (
+	"encoding/json"
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -98,28 +100,32 @@ func initParser(s string) *parser {
 	return p
 }
 
-func AtoList(s string) *ListNode {
+// AtoList 返回链表
+func AtoList(s string, target any) {
 	p := initParser(s)
-	return p.buildList()
-
+	convert(p.buildList(), target)
 }
 
-func AtoBinaryTree(s string) *TreeNode {
+// AtoBinaryTree 返回二叉树
+func AtoBinaryTree(s string, target any) {
 	p := initParser(s)
-	return p.buildBinaryTree()
+	convert(p.buildBinaryTree(), target)
 }
 
-//func main() {
-//	var p = parser{}
-//	p.s = "[1,2,3, 3,4,4,5]"
-//	p.parseString()
-//	head := p.buildList()
-//	for cur := head; cur != nil; cur = cur.Next {
-//		fmt.Printf("%d ", cur.Val)
-//	}
-//
-//	p.s = "[7, 3, 15, null, null, 9, 20]"
-//	p.parseString()
-//	root := p.buildBinaryTree()
-//	fmt.Println(root)
-//}
+// convert 把 当前的代码值赋值给参数
+// 因为 Leetcode 的 ListNode 和 TreeNode 结构是一样的
+// 这样把值赋给用户创建的 Node 就好写题解函数了
+// eg. func sortList(head *ListNode) *ListNode {}
+// 否则题解函数入参返回参就是 func sortList(head *parser.ListNode) *parser.ListNode {}
+// 就很不方便
+func convert(src, dst any) {
+	data, err := json.Marshal(src)
+	if err != nil {
+		fmt.Println("json Marshal failed, err: ", err)
+	}
+
+	err = json.Unmarshal(data, dst)
+	if err != nil {
+		fmt.Println("json Unmarshal failed, err: ", err)
+	}
+}
