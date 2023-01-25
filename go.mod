@@ -1,3 +1,3 @@
-module github.com/gofaquan/lc-demo-gen
+module github.com/gofaquan/Leetcode-Demo-gen
 
 go 1.19
